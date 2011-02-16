@@ -10,10 +10,7 @@ task :install do
   overwrite_all = false
   backup_all = false
   
-  
-  Dir['*'].each do |file|
-    next if FILES_NOT_TO_LINK.include?(file)
-    
+  each_file do |file|
     skip = false
     overwrite = false
     backup = false
@@ -45,8 +42,25 @@ task :install do
   end
 end
 
+def each_file(&block)
+  Dir['**/**'].group_by { |path| path.split("/").first }.each do |top_level_file, files|
+    next if FILES_NOT_TO_LINK.include?(top_level_file)
+    
+    if File.directory?(top_level_file)
+      symlinked_files = files.select { |file| file =~ /symlink$/ }
+      if symlinked_files.empty?
+        block.call(top_level_file)
+      else
+        symlinked_files.each { |symlinked_file| block.call(symlinked_file) }
+      end
+    else
+      block.call(top_level_file)
+    end
+  end
+end
+
 def target_path(file)
-  File.join(ENV['HOME'], ".#{file.sub('.erb', '')}")
+  File.join(ENV['HOME'], ".#{file.sub(/.erb|.symlink/, '')}")
 end
 
 def backup(file)
