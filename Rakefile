@@ -60,6 +60,7 @@ def each_file(&block)
 end
 
 def target_path(file)
+  file = File.basename(file) if file =~ /.symlink/
   File.join(ENV['HOME'], ".#{file.sub(/.erb|.symlink/, '')}")
 end
 
