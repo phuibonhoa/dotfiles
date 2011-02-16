@@ -1,41 +1,47 @@
-= Ryan Bates Dot Files
+# Philippe Huibonhoa's Dot Files
 
-These are config files to set up a system the way I like it.
+I'm combining the best of [Ryan Bates's dotfiles](https://github.com/ryanb/dotfiles) with that of [Zach Holman's](https://github.com/holman/dotfiles) and a touch of my own stuff.
+
+Aside from just adding my own favorite options and dotfiles, I'll be:
+
+* Cleaning up the install
+* Organizational dirs - directories with files that end in .symlink won't be copied over.  Instead they're used to help organize your dotfiles in the project and .symlink files are linked to your home dir
+* Copied dirs - directories without .symlink files, work as usual (ie entire dir linked to home folder)
+* Added option to back up existing files on install
+
+## Installation
+
+    git clone git://github.com/phuibonhoa/dotfiles.git ~/.dotfiles
+    cd ~/.dotfiles
+    rake install
 
 
-== Installation
-
-  git clone git://github.com/ryanb/dotfiles ~/.dotfiles
-  cd ~/.dotfiles
-  rake install
-
-
-== Environment
+## Environment
 
 I am running on Mac OS X, but it will likely work on Linux as well with 
 minor fiddling. I primarily use zsh, but this includes some older bash 
 files as well. If you would like to switch to zsh, you can do so with 
 the following command.
 
-  chsh -s /bin/zsh
+    chsh -s /bin/zsh
 
 
-== Features
+## Features
 
 I normally place all of my coding projects in ~/code, so this directory 
 can easily be accessed (and tab completed) with the "c" command.
 
-  c railsca<tab>
+    c railsca<tab>
 
 There is also an "h" command which behaves similar, but acts on the 
 home path.
 
-  h doc<tab>
+    h doc<tab>
 
 Tab completion is also added to rake and cap commands:
 
-  rake db:mi<tab>
-  cap de<tab>
+    rake db:mi<tab>
+    cap de<tab>
 
 To speed things up, the results are cached in local .rake_tasks~ and 
 .cap_tasks~. It is smart enough to expire the cache automatically in 
@@ -53,15 +59,15 @@ the prompt while in a git repository.
 If you're using Rails, you'll find some handy aliases (below). You can 
 also use show_log and hide_log in script/console to show the log inline.
   
-  ss       # script/server
-  sc       # script/console
-  sg       # script/generate
-  a        # autotest
-  tlog     # tail -f log/development.log
-  rst      # touch tmp/restart.txt
-  migrate  # rake db:migrate db:test:clone
-  scaffold # script/generate nifty_scaffold
-
+    ss       # script/server
+    sc       # script/console
+    sg       # script/generate
+    a        # autotest
+    tlog     # tail -f log/development.log
+    rst      # touch tmp/restart.txt
+    migrate  # rake db:migrate db:test:clone
+    scaffold # script/generate nifty_scaffold
+  
 See the other aliases in ~/.zsh/aliases
 
 If there are some shell configuration settings which you want secure or 
