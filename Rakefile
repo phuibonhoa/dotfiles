@@ -47,7 +47,7 @@ def each_file(&block)
     next if FILES_NOT_TO_LINK.include?(top_level_file)
     
     if File.directory?(top_level_file)
-      symlinked_files = files.select { |file| file =~ /symlink$/ }
+      symlinked_files = files.select { |file| file =~ /\.symlink/ }
       if symlinked_files.empty?
         block.call(top_level_file)
       else
@@ -60,8 +60,8 @@ def each_file(&block)
 end
 
 def target_path(file)
-  file = File.basename(file) if file =~ /.symlink/
-  File.join(ENV['HOME'], ".#{file.sub(/.erb|.symlink/, '')}")
+  file = File.basename(file) if file =~ /\.symlink/
+  File.join(ENV['HOME'], ".#{file.gsub(/\.erb|\.symlink/, '')}")
 end
 
 def backup(file)
@@ -77,6 +77,7 @@ end
 def link_file(file)
   target = target_path(file)
   if file =~ /.erb$/
+    puts file
     puts "Generating #{target}"
     File.open(target, 'w') do |new_file|
       new_file.write ERB.new(File.read(file)).result(binding)
