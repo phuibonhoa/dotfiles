@@ -2,12 +2,13 @@
 
 I'm combining the best of [Ryan Bates's dotfiles](https://github.com/ryanb/dotfiles) with that of [Zach Holman's](https://github.com/holman/dotfiles) and a touch of my own stuff.
 
-Aside from just adding my own favorite options and dotfiles, I'll be:
+Aside from just adding my own favorite options and dotfiles, I've:
 
-* Cleaning up the install
-* Organizational dirs - directories with files that end in .symlink won't be copied over.  Instead they're used to help organize your dotfiles in the project and .symlink files are linked to your home dir
-* Copied dirs - directories without .symlink files, work as usual (ie entire dir linked to home folder)
-* Added option to back up existing files on install
+* Cleaned up the install rake command
+* Added the option to back up existing files on install
+* Added organizational dirs - directories with files that end in .symlink won't be copied over.  Instead they're used to help organize your dotfiles by context.
+  * ex. throw all your ruby/rails dotfiles in a rails dir and only the .symlink files are linked to your home directory, the actual rails dir is not linked
+  * directories without .symlink files, work as usual (ie entire dir linked to home folder)
 
 ## Installation
 
@@ -78,3 +79,12 @@ There are several features enabled in Ruby's irb including history and
 completion. Many convenience methods are added as well such as "ri"
 which can be used to get inline documentation in IRB. See irbrc and
 railsrc files for details.
+
+
+## Credits
+
+![BookRenter.com Logo](http://assets0.bookrenter.com/images/header/bookrenter_logo.gif "BookRenter.com")
+
+These dotfiles are currently maintained by [Philippe Huibonhoa](http://github.com/phuibonhoa) and funded by [BookRenter.com](http://www.bookrenter.com "BookRenter.com").
+
+Much credit goes to [Ryan Bates's dotfiles](https://github.com/ryanb/dotfiles) and [Zach Holman's](https://github.com/holman/dotfiles).  I'm really just combining their awesome work into an explosion of dotfile awesomeness.
