@@ -1,6 +1,6 @@
 # Philippe Huibonhoa's Dot Files
 
-I'm combining the best of [Ryan Bates's dotfiles](https://github.com/ryanb/dotfiles) with that of [Zach Holman's](https://github.com/holman/dotfiles) and a touch of my own stuff.
+I'm combining the best of [Ryan Bates's dotfiles](https://github.com/ryanb/dotfiles) with that of [Zach Holman's dotfiles](https://github.com/holman/dotfiles) and a touch of my own stuff.
 
 Aside from just adding my own favorite options and dotfiles, I've:
 
@@ -87,4 +87,4 @@ railsrc files for details.
 
 These dotfiles are currently maintained by [Philippe Huibonhoa](http://github.com/phuibonhoa) and funded by [BookRenter.com](http://www.bookrenter.com "BookRenter.com").
 
-Much credit goes to [Ryan Bates's dotfiles](https://github.com/ryanb/dotfiles) and [Zach Holman's](https://github.com/holman/dotfiles).  I'm really just combining their awesome work into an explosion of dotfile awesomeness.
+All the credit really goes to [Ryan Bates](https://github.com/ryanb/dotfiles) and [Zach Holman](https://github.com/holman/dotfiles).  I'm really just combining their awesome work into an explosion of dotfile awesomeness.
