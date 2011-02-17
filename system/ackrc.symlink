@@ -1,0 +1,15 @@
+--type-add=objc=.pch
+--type-add=ruby=.haml,.rake,.rsel
+--type-set=xcode=.pbxproj,.pbxuser,.perspectivev3
+--type-add=html=.html.erb,.html.haml
+--type-add=js=.js.erb
+--type-add=css=.sass
+--type-set=ragel=.rl
+--type-set=nib=.xib
+--type-set=plist=.plist
+--type-set=tmstuff=.tmproj,.tm_build_errors
+--type-set=cucumber=.feature
+--nonib
+--notmstuff
+--noxcode
+--ignore-dir=tmp
