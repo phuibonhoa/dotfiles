@@ -2,16 +2,39 @@
 require 'irb/completion'
 require 'irb/ext/save-history'
 
-IRB.conf[:SAVE_HISTORY] = 1000
-IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb_history"
-
-IRB.conf[:PROMPT_MODE] = :SIMPLE
-
-%w[rubygems looksee/shortcuts wirble ap].each do |gem|
+#ap = awesome_print
+%w[rubygems wirble ap].each do |gem|
   begin
     require gem
   rescue LoadError
   end
+end
+
+unless defined? ETC_IRBRC_LOADED
+  IRB.conf[:PROMPT_MODE] = :SIMPLE if IRB.conf[:PROMPT_MODE] == :DEFAULT
+  
+  HISTFILE = "~/.irb_history"
+  MAXHISTSIZE = 500
+  begin
+    histfile = File::expand_path(HISTFILE)
+    if File::exists?(histfile)
+      lines = IO::readlines(histfile).collect { |line| line.chomp }
+      puts "Read #{lines.nitems} saved history commands from '#{histfile}'." if $VERBOSE
+      Readline::HISTORY.push(*lines)
+    else
+      puts "History file '#{histfile}' was empty or non-existant." if $VERBOSE
+    end
+    Kernel::at_exit do
+      lines = Readline::HISTORY.to_a.reverse.uniq.reverse
+      lines = lines[-MAXHISTSIZE, MAXHISTSIZE] if lines.nitems > MAXHISTSIZE
+      puts "Saving #{lines.length} history lines to '#{histfile}'." if $VERBOSE
+      File::open(histfile, File::WRONLY|File::CREAT|File::TRUNC) { |io| io.puts lines.join("\n") }
+    end
+  rescue => e
+    puts "Error when configuring permanent history: #{e}" if $VERBOSE
+  end
+
+  ETC_IRBRC_LOADED=true
 end
 
 IRB::Irb.class_eval do
@@ -59,3 +82,5 @@ def paste
 end
 
 load File.join(File.dirname(__FILE__), '.railsrc') if ($0 == 'irb' && ENV['RAILS_ENV']) || ($0 == 'script/rails' && Rails.env)
+
+def ch;load Rails.root.join(*%w[script console_helpers.rb]);end
