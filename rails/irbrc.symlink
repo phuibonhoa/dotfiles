@@ -70,12 +70,12 @@ def copy(str)
 end
 alias pbcopy copy
 
-def history
+def irb_history
   Readline::HISTORY.entries
 end
 
 def copy_history
-  local_history = history
+  local_history = irb_history
   index = local_history.rindex("exit") || -1
   content = local_history[(index+1)..-2].join("\n")
   puts content
