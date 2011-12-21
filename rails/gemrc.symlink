@@ -1,10 +1,11 @@
 --- 
+:benchmark: false
+:bulk_threshold: 1000
 :verbose: true
 gem: --no-ri --no-rdoc
 :update_sources: true
 :sources: 
 - http://gems.rubyforge.org
 - http://gems.github.com
+- http://s3.amazonaws.com/br_custom_gem_repo/
 :backtrace: false
-:bulk_threshold: 1000
-:benchmark: false
